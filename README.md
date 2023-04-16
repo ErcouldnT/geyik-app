@@ -5,8 +5,10 @@
 - SvelteKit
 - Skeleton UI
 - Tailwind CSS
+- Zod
 
 ## Used Services
 
 - Netlify
 - Cloudflare
+- Supabase

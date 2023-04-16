@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 </script>
 
-<form action="POST" class="flex flex-col gap-2">
+<form action="?/giriş" method="POST" class="flex flex-col gap-2" use:enhance>
 	<h1 class="my-2">Girişler buradan</h1>
 	<label class="label">
 		<span>Email</span>
