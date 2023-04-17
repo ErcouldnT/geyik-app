@@ -3,7 +3,7 @@
 </script>
 
 <form action="?/yarat" method="POST" class="flex flex-col gap-2" use:enhance>
-	<h1 class="my-2">Forum yarat</h1>
+	<h1 class="my-2">İşte senin forumun</h1>
 	<label class="label">
 		<span>Forum adı</span>
 		<input class="input" type="text" name="forumName" placeholder="Dingo'nun ahırı" />

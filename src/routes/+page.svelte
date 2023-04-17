@@ -22,7 +22,7 @@
 			<button type="submit" class="btn variant-filled-error">Çıkış yap</button>
 		</form>
 
-		<a href="/forumcu" type="submit" class="btn variant-filled-success">Forum yarat</a>
+		<a href="/yeni" type="submit" class="btn variant-filled-success">Yeni forum aç</a>
 	{:else}
 		<h1 class="my-2">Oopss...</h1>
 		<p class="italic">Merak etme! İçeri giriş buradan...</p>
