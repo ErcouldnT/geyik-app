@@ -8,8 +8,12 @@ export const load = async ({ params, locals: { supabase } }) => {
 	// }
 
 	if (data?.length) {
+		const forum = data[0];
+		const session = await supabase.auth.getSession();
+		const isAdmin = session.data.session?.user.id === forum.admin;
 		return {
-			forum: data[0]
+			forum,
+			isAdmin
 		};
 	}
 
