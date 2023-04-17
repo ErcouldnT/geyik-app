@@ -7,9 +7,14 @@
 
 <main class="flex flex-col gap-2">
 	<h1 class="my-2">{data.kategori.name}</h1>
+
+	{#each data.kategori.konular as konu (konu.id)}
+		<a href="{data.kategori.slug}/{konu.slug}" class="cursor-pointer">{konu.title}</a>
+	{/each}
+
 	{#if data.session}
 		<form action="?/yeni" method="POST" class="flex flex-col gap-2" use:enhance>
-			<input class="hidden" bind:value={data.kategori.id} type="text" name="forum" />
+			<input class="hidden" bind:value={data.kategori.id} type="text" name="kategori" />
 			<label class="label">
 				<span>Başlık</span>
 				<input class="input" type="text" name="title" placeholder="AMD mi, Intel mi?" />
@@ -23,12 +28,8 @@
 					placeholder="İşlemci bozuldu, ne yapmam lazım?"
 				/>
 			</label>
-			<button type="submit" class="btn variant-filled-success">Ekle</button>
-			<p class="italic">Geyik'e üye olmuş herkes konu açabilir.</p>
+			<button type="submit" class="btn variant-filled-success">Konu aç</button>
 		</form>
 	{/if}
-
-	<!-- {#each data.forum.kategoriler as kategori (kategori.id)}
-		<a href="{data.forum.slug}/{kategori.slug}" class="cursor-pointer">{kategori.name}</a>
-	{/each} -->
+	<p class="italic">Geyik'e üye olmuş herkes konu açabilir.</p>
 </main>

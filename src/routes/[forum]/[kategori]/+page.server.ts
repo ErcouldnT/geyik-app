@@ -13,8 +13,8 @@ export const load = async ({ params, locals: { supabase } }) => {
 
 	if (data?.length) {
 		const kategori = data[0];
-		// const { data: kategoriler } = await supabase.from('kategoriler').select().eq('forum', forum.id);
-		// forum.kategoriler = kategoriler;
+		const { data: konular } = await supabase.from('konular').select().eq('kategori', kategori.id);
+		kategori.konular = konular;
 		const session = await supabase.auth.getSession();
 		const isOwner = session.data.session?.user.id === kategori.owner;
 		return {
