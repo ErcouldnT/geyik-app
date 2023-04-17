@@ -6,9 +6,8 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import type { LayoutData } from './$types';
 
-	export let data: LayoutData;
+	export let data;
 
 	$: ({ supabase, session } = data);
 
