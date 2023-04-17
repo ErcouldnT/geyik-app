@@ -5,9 +5,10 @@
 - SvelteKit
 - Skeleton UI
 - Tailwind CSS
+- Slug?
+- date-fns?
 - Zod?
 - Superforms?
-- Slug?
 
 ## Used Services
 
