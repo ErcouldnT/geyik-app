@@ -1,5 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
+import slugify from '$lib/slugify.js';
 
 export const actions = {
 	async yarat({ request, locals: { supabase } }) {
@@ -9,13 +10,11 @@ export const actions = {
 		const data = await supabase.auth.getSession();
 		const admin = data.data.session?.user.id;
 
-		const { error } = await supabase
-			.from('forumlar')
-			.insert({
-				name: forumName,
-				admin,
-				slug: forumName.toLowerCase().trim().replaceAll(' ', '-')
-			});
+		const { error } = await supabase.from('forumlar').insert({
+			name: forumName,
+			admin,
+			slug: slugify(forumName)
+		});
 		// console.log(error);
 
 		if (error) {

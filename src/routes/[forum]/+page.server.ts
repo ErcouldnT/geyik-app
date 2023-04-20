@@ -1,5 +1,6 @@
 import { error, fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
+import slugify from '$lib/slugify.js';
 
 export const load = async ({ params, locals: { supabase } }) => {
 	const { data, error: err } = await supabase.from('forumlar').select().eq('slug', params.forum);
@@ -36,7 +37,7 @@ export const actions = {
 			name: kategori,
 			forum,
 			owner,
-			slug: kategori.toLowerCase().trim().replaceAll(' ', '-')
+			slug: slugify(kategori)
 		});
 
 		if (error) {

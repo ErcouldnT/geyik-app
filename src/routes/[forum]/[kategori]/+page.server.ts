@@ -1,5 +1,6 @@
 import { error, fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
+import slugify from '$lib/slugify.js';
 
 export const load = async ({ params, locals: { supabase } }) => {
 	const { data, error: err } = await supabase
@@ -42,7 +43,7 @@ export const actions = {
 			content,
 			author,
 			kategori,
-			slug: title.toLowerCase().trim().replaceAll(' ', '-')
+			slug: slugify(title)
 		});
 
 		if (error) {
