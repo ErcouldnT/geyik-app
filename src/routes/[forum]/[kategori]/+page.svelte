@@ -2,13 +2,13 @@
 	import { enhance } from '$app/forms';
 
 	export let data;
-	export let form;
+	// export let form;
 </script>
 
 <main class="flex flex-col gap-2">
 	<h1 class="my-2">{data.kategori.name}</h1>
 
-	{#each data.kategori.konular as konu (konu.id)}
+	{#each data.konular || [] as konu (konu.id)}
 		<a href="{data.kategori.slug}/{konu.slug}" class="cursor-pointer">{konu.title}</a>
 	{/each}
 

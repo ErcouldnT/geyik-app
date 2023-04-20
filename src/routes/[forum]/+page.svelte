@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 
 	export let data;
-	export let form;
+	// export let form;
 </script>
 
 <main class="flex flex-col gap-2">
@@ -18,7 +18,7 @@
 		</form>
 	{/if}
 
-	{#each data.forum.kategoriler as kategori (kategori.id)}
+	{#each data.kategoriler || [] as kategori (kategori.id)}
 		<a href="{data.forum.slug}/{kategori.slug}" class="cursor-pointer">{kategori.name}</a>
 	{/each}
 </main>

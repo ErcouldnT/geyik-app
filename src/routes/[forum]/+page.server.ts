@@ -1,22 +1,19 @@
-import { error, fail, redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 import slugify from '$lib/slugify.js';
 
 export const load = async ({ params, locals: { supabase } }) => {
-	const { data, error: err } = await supabase.from('forumlar').select().eq('slug', params.forum);
-
-	// if (err) {
-	// 	throw error(500, 'Database');
-	// }
+	const { data } = await supabase.from('forumlar').select().eq('slug', params.forum);
 
 	if (data?.length) {
 		const forum = data[0];
 		const { data: kategoriler } = await supabase.from('kategoriler').select().eq('forum', forum.id);
-		forum.kategoriler = kategoriler;
+		// forum.kategoriler = kategoriler;
 		const session = await supabase.auth.getSession();
 		const isAdmin = session.data.session?.user.id === forum.admin;
 		return {
 			forum,
+			kategoriler,
 			isAdmin
 		};
 	}
@@ -27,7 +24,7 @@ export const load = async ({ params, locals: { supabase } }) => {
 export const actions = {
 	async yeni({ request, locals: { supabase, getSession } }) {
 		const formData = await request.formData();
-		const forum = formData.get('forum') as string;
+		const forum = formData.get('forum') as number | null;
 		const kategori = formData.get('kategori') as string;
 
 		const session = await getSession();

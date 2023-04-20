@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Geyik Y-App</title>
+	<title>Geyik YApp</title>
 </svelte:head>
 
 <AppShell>

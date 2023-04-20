@@ -1,21 +1,18 @@
-import { error, fail, redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 
 export const load = async ({ params, locals: { supabase } }) => {
-	const { data, error: err } = await supabase.from('konular').select().eq('slug', params.konu);
-
-	// if (err) {
-	// 	throw error(500, 'Database');
-	// }
+	const { data } = await supabase.from('konular').select().eq('slug', params.konu);
 
 	if (data?.length) {
 		const konu = data[0];
 		const { data: yorumlar } = await supabase.from('yorumlar').select().eq('konu', konu.id);
-		konu.yorumlar = yorumlar;
+		// konu.yorumlar = yorumlar;
 		const session = await supabase.auth.getSession();
 		const isAuthor = session.data.session?.user.id === konu.author;
 		return {
 			konu,
+			yorumlar,
 			isAuthor
 		};
 	}
@@ -26,7 +23,7 @@ export const load = async ({ params, locals: { supabase } }) => {
 export const actions = {
 	async yeni({ request, locals: { supabase, getSession } }) {
 		const formData = await request.formData();
-		const konu = formData.get('konu') as string;
+		const konu = formData.get('konu') as number | null;
 		const yorum = formData.get('yorum') as string;
 
 		const session = await getSession();
@@ -34,7 +31,7 @@ export const actions = {
 
 		const { error } = await supabase.from('yorumlar').insert({
 			konu,
-			yorum: yorum.trim(),
+			content: yorum.trim(),
 			author
 		});
 

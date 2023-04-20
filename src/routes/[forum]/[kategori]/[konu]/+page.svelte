@@ -14,8 +14,8 @@
 	<p>{data.konu.content}</p>
 
 	<h2>Yorumlar</h2>
-	{#each data.konu.yorumlar as { yorum } (yorum.id)}
-		<div>★ {yorum}</div>
+	{#each data.yorumlar || [] as yorum (yorum.id)}
+		<div>★ {yorum.content}</div>
 		<!-- <p>{created_at}</p> -->
 	{/each}
 

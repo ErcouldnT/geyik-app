@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
-	import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 
 	export let data;
 
@@ -36,7 +36,7 @@
 		<h2>Geyik Forumlar</h2>
 		<nav class="list-nav">
 			<ul>
-				{#each data.forumlar as forum (forum.id)}
+				{#each data.forumlar || [] as forum (forum.id)}
 					<li>
 						<a href={forum.slug}>
 							<span class="badge text-xl text-fuchsia-600">></span>
