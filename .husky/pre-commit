@@ -2,6 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # npm run update-types
+npx svelte-kit sync
 npm run check
 npm run lint
+# npx lint-staged
 npm test
