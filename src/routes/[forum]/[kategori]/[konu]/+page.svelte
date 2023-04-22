@@ -15,8 +15,10 @@
 
 	<h2>Yorumlar</h2>
 	{#each data.yorumlar || [] as yorum (yorum.id)}
-		<div>★ {yorum.content}</div>
-		<!-- <p>{created_at}</p> -->
+		<div>
+			★ {yorum.author}
+			{yorum.content} ({yorum.created_at})
+		</div>
 	{/each}
 
 	{#if data.session}
