@@ -2,6 +2,12 @@ import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 import slugify from '$lib/slugify.js';
 
+export const load = async ({ locals: { getSession } }) => {
+	if (await getSession()) {
+		throw redirect(302, '/');
+	}
+};
+
 export const actions = {
 	async yarat({ request, locals: { supabase } }) {
 		const formData = await request.formData();

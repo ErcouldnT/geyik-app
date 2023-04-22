@@ -1,6 +1,12 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 
+export const load = async ({ locals: { getSession } }) => {
+	if (await getSession()) {
+		throw redirect(302, '/');
+	}
+};
+
 export const actions = {
 	giriş: async ({ request, locals: { supabase } }) => {
 		const formData = await request.formData();
