@@ -83,7 +83,7 @@ export interface Database {
 			};
 			profiles: {
 				Row: {
-					created_at: string | null;
+					created_at: string;
 					first_name: string | null;
 					id: number;
 					imza: string | null;
@@ -94,7 +94,7 @@ export interface Database {
 					user_id: string;
 				};
 				Insert: {
-					created_at?: string | null;
+					created_at?: string;
 					first_name?: string | null;
 					id?: number;
 					imza?: string | null;
@@ -105,7 +105,7 @@ export interface Database {
 					user_id: string;
 				};
 				Update: {
-					created_at?: string | null;
+					created_at?: string;
 					first_name?: string | null;
 					id?: number;
 					imza?: string | null;
