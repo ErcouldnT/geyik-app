@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import dateDistance from '$lib/dateDistance.js';
 
 	export let data;
 	// export let form;
@@ -17,7 +18,7 @@
 	{#each data.yorumlar || [] as yorum (yorum.id)}
 		<div>
 			★ {yorum.author}
-			{yorum.content} ({yorum.created_at})
+			{yorum.content} ({dateDistance(yorum.created_at)} önce)
 		</div>
 	{/each}
 

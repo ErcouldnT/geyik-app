@@ -81,25 +81,60 @@ export interface Database {
 					title?: string | null;
 				};
 			};
+			profiles: {
+				Row: {
+					created_at: string | null;
+					first_name: string | null;
+					id: number;
+					imza: string | null;
+					last_name: string | null;
+					nickname: string;
+					token_count: number;
+					token_visible: boolean | null;
+					user_id: string;
+				};
+				Insert: {
+					created_at?: string | null;
+					first_name?: string | null;
+					id?: number;
+					imza?: string | null;
+					last_name?: string | null;
+					nickname: string;
+					token_count?: number;
+					token_visible?: boolean | null;
+					user_id: string;
+				};
+				Update: {
+					created_at?: string | null;
+					first_name?: string | null;
+					id?: number;
+					imza?: string | null;
+					last_name?: string | null;
+					nickname?: string;
+					token_count?: number;
+					token_visible?: boolean | null;
+					user_id?: string;
+				};
+			};
 			yorumlar: {
 				Row: {
 					author: string | null;
 					content: string;
-					created_at: string | null;
+					created_at: string;
 					id: number;
 					konu: number | null;
 				};
 				Insert: {
 					author?: string | null;
 					content: string;
-					created_at?: string | null;
+					created_at?: string;
 					id?: number;
 					konu?: number | null;
 				};
 				Update: {
 					author?: string | null;
 					content?: string;
-					created_at?: string | null;
+					created_at?: string;
 					id?: number;
 					konu?: number | null;
 				};

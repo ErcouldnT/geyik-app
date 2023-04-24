@@ -6,7 +6,7 @@
 - Skeleton UI
 - Tailwind CSS
 - Slugify
-- date-fns?
+- Date-Fns
 - Zod?
 - Superforms?
 
