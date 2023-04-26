@@ -13,4 +13,5 @@
 		<input class="input" name="password" type="password" placeholder="******" />
 	</label>
 	<button type="submit" class="btn variant-filled-success">Kayıt ol</button>
+	<p class="italic">Email adresinize hemen bir doğrulama maili göndereceğiz.</p>
 </form>
