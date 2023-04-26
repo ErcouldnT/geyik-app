@@ -12,7 +12,7 @@
 	{/if}
 
 	<h1 class="my-2">{data.konu.title}</h1>
-	<p>{data.konu.content}</p>
+	<p class="text-justify">{data.konu.content}</p>
 
 	<h2>Yorumlar</h2>
 	{#each data.yorumlar || [] as yorum (yorum.id)}

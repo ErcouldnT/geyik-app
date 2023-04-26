@@ -13,4 +13,5 @@
 		<input class="input" name="password" type="password" placeholder="******" />
 	</label>
 	<button type="submit" class="btn variant-filled-success">Giriş yap</button>
+	<p class="italic">Hesabınızı doğruladıktan sonra giriş yapınız.</p>
 </form>

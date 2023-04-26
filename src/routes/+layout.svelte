@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Geyik YApp</title>
+	<title>Geyik Yapp</title>
 </svelte:head>
 
 <AppShell>
@@ -61,9 +61,11 @@
 	<!-- <svelte:fragment slot="sidebarLeft">Sidebar Left</svelte:fragment> -->
 	<!-- <svelte:fragment slot="sidebarRight">Sidebar Right</svelte:fragment> -->
 	<!-- <svelte:fragment slot="pageHeader">Page Header</svelte:fragment> -->
-	<div class="flex justify-center items-center p-5">
+	<div class="p-5 space-y-2 max-w-xl mx-auto flex flex-col justify-center items-center">
 		<slot />
 	</div>
 	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment> -->
-	<svelte:fragment slot="footer">erkut.dev</svelte:fragment>
+	<svelte:fragment slot="footer">
+		<a href="https://erkut.dev" class="chip">erkut.dev</a>
+	</svelte:fragment>
 </AppShell>
