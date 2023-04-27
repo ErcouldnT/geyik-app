@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import dateDistance from '$lib/dateDistance.js';
+	import Mesaj from './Mesaj.svelte';
 
 	export let data;
 	// export let form;
@@ -16,10 +16,7 @@
 
 	<h2>Yorumlar</h2>
 	{#each data.yorumlar || [] as yorum (yorum.id)}
-		<div>
-			★ {yorum.author}
-			{yorum.content} ({dateDistance(yorum.created_at)} önce)
-		</div>
+		<Mesaj {yorum} supabase={data.supabase} />
 	{/each}
 
 	{#if data.session}

@@ -54,7 +54,7 @@ export interface Database {
 			};
 			konular: {
 				Row: {
-					author: string | null;
+					author: string;
 					content: string | null;
 					created_at: string | null;
 					id: number;
@@ -63,7 +63,7 @@ export interface Database {
 					title: string | null;
 				};
 				Insert: {
-					author?: string | null;
+					author: string;
 					content?: string | null;
 					created_at?: string | null;
 					id?: number;
@@ -72,7 +72,7 @@ export interface Database {
 					title?: string | null;
 				};
 				Update: {
-					author?: string | null;
+					author?: string;
 					content?: string | null;
 					created_at?: string | null;
 					id?: number;
@@ -115,21 +115,21 @@ export interface Database {
 			};
 			yorumlar: {
 				Row: {
-					author: string | null;
+					author: string;
 					content: string;
 					created_at: string;
 					id: number;
 					konu: number | null;
 				};
 				Insert: {
-					author?: string | null;
+					author: string;
 					content: string;
 					created_at?: string;
 					id?: number;
 					konu?: number | null;
 				};
 				Update: {
-					author?: string | null;
+					author?: string;
 					content?: string;
 					created_at?: string;
 					id?: number;

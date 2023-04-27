@@ -30,7 +30,7 @@ export const actions = {
 		const content = formData.get('content') as string;
 
 		const session = await getSession();
-		const author = session?.user.id;
+		const author = session?.user.id as string;
 
 		const { error } = await supabase.from('konular').insert({
 			title,

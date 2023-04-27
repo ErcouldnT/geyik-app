@@ -27,7 +27,7 @@ export const actions = {
 		const yorum = formData.get('yorum') as string;
 
 		const session = await getSession();
-		const author = session?.user.id;
+		const author = session?.user.id as string;
 
 		const { error } = await supabase.from('yorumlar').insert({
 			konu,
