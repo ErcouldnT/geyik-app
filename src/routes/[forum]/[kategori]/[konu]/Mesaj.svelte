@@ -49,21 +49,26 @@
 </script>
 
 {#if nickname}
-	<div class="flex gap-2 space-y-2 relative my-1">
-		<div class="flex flex-col items-center m-2">
-			<Avatar
-				border="border-4 	border-surface-300-600-token hover:!border-primary-500"
-				cursor="cursor-pointer"
-				src={avatarUrl}
-				width="w-24"
-				rounded="rounded-full"
-			/>
-			<p class="chip">@{nickname}</p>
+	<div class="border-primary-500 rounded py-2 space-y-2">
+		<div class="flex justify-between">
+			<div class="flex space-x-2">
+				<Avatar
+					border="border-4 	border-surface-300-600-token hover:!border-primary-500"
+					cursor="cursor-pointer"
+					src={avatarUrl}
+					width="w-12"
+					rounded="rounded-full"
+				/>
+				<div>
+					<div class="text-sm">{fullname}</div>
+					<div class="text-sm font-thin">@{nickname}</div>
+				</div>
+			</div>
+			<div class="text-sm">{timePassed} önce</div>
 		</div>
 		<div>
-			<p class="py-5 text-justify">{yorum.content}</p>
-			<!-- <p>{fullname}</p> -->
-			<p class="absolute right-0 top-0">({timePassed} önce)</p>
+			<p class="text-justify">{yorum.content}</p>
 		</div>
 	</div>
+	<hr />
 {/if}
