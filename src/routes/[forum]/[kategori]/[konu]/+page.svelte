@@ -19,7 +19,7 @@
 		<p class="italic">(Bu makalenin sahibi sizsiniz.)</p>
 	{/if}
 
-	<h1 class="my-2 underline">{data.konu.title}</h1>
+	<h1 class="my-2 underline break-words">{data.konu.title}</h1>
 	<p class="text-justify">{data.konu.content}</p>
 
 	<div class="space-y-2 my-5">
@@ -39,7 +39,7 @@
 				<span>Sen ne diyorsun?</span>
 				<textarea class="input" name="yorum" rows="3" placeholder="Bence şu daha güzel!" />
 			</label>
-			<button type="submit" class="btn variant-filled-success">Gönder</button>
+			<button type="submit" class="btn variant-filled-success after:content-['_↗']">Gönder</button>
 		</form>
 	{:else}
 		<p>Yorum yazabilmek için lütfen <a href="/giriş">giriş</a> yapınız.</p>

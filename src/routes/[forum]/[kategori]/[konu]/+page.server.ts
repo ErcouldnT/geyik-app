@@ -30,7 +30,7 @@ export const actions = {
 		const konu = formData.get('konu') as number | null;
 		const yorum = formData.get('yorum') as string;
 
-		if (!yorum.length) {
+		if (!yorum.trim().length) {
 			return fail(400);
 		}
 
