@@ -5,6 +5,20 @@
 
 	export let data;
 
+	let nickname = '';
+	$: {
+		nickname = nickname.toLowerCase().replaceAll(' ', '');
+		if (!nickname.startsWith('@')) {
+			nickname = '@' + nickname;
+		}
+		if (nickname === '@') {
+			nickname = '';
+		}
+	}
+
+	let isim = '';
+	$: isim = isim.replace(/(^\w|\s\w)(\S*)/g, (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase());
+
 	let kvkk = false;
 	let kurallar = false;
 	let letsGo = false;
@@ -40,11 +54,11 @@
 		await checkAvatar();
 	};
 
-	$: letsGo = kvkk && kurallar;
+	$: letsGo = kvkk && kurallar && Boolean(nickname) && Boolean(isim);
 </script>
 
-<h1>Geyik'e hoşgeldin</h1>
-<p>Size nasıl seslenelim?</p>
+<!-- <h1>Geyik'e hoşgeldin</h1> -->
+<!-- <p>Size nasıl seslenelim?</p> -->
 
 <FileDropzone name="files" bind:files on:change={onUploadAvatarHandler}>
 	<svelte:fragment slot="lead">
@@ -59,11 +73,18 @@
 <form action="?/profil" method="POST" class="w-full flex flex-col gap-2" use:enhance>
 	<label class="label">
 		<span>Kullanıcı adı <span class="font-thin text-xs">(zorunlu)</span></span>
-		<input class="input" type="text" name="nickname" placeholder="" required />
+		<input
+			bind:value={nickname}
+			class="input"
+			type="text"
+			name="nickname"
+			placeholder=""
+			required
+		/>
 	</label>
 	<label class="label">
-		<span>Gerçek adınız <span class="font-thin text-xs">(zorunlu)</span></span>
-		<input class="input" type="text" name="isim" placeholder="" required />
+		<span>Ad Soyad <span class="font-thin text-xs">(zorunlu)</span></span>
+		<input bind:value={isim} class="input" type="text" name="isim" placeholder="" required />
 	</label>
 	<label class="label">
 		<span>Token sayısı</span>
@@ -90,7 +111,7 @@
 	</label>
 
 	<button type="submit" class="btn {letsGo ? 'variant-filled-success' : 'variant-filled-primary'}"
-		>Geyik yapmaya hazırım</button
+		>{letsGo ? 'Geyik yapmaya hazırım!' : 'Lütfen formu doldurun.'}</button
 	>
 	<p class="italic">Şimdilik bu bilgileri daha sonradan değiştiremezsiniz.</p>
 </form>
