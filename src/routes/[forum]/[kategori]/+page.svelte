@@ -5,6 +5,14 @@
 	// export let form;
 </script>
 
+<ol class="hidden md:flex breadcrumb">
+	<li class="crumb"><a href="/">Geyik</a></li>
+	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+	<li class="crumb"><a href="/">Forum</a></li>
+	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+	<li>{data.kategori.name}</li>
+</ol>
+
 <main class="flex flex-col gap-2">
 	<h1 class="my-2">{data.kategori.name}</h1>
 

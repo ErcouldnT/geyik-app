@@ -14,6 +14,14 @@
 	// };
 </script>
 
+<ol class="hidden md:flex breadcrumb">
+	<li class="crumb"><a href="/">Forum</a></li>
+	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+	<li class="crumb"><a href="/">Kategori</a></li>
+	<li class="crumb-separator" aria-hidden>&rsaquo;</li>
+	<li>{data.konu.title}</li>
+</ol>
+
 <main class="flex flex-col gap-2">
 	{#if data.isAuthor}
 		<p class="italic">(Bu makalenin sahibi sizsiniz.)</p>
