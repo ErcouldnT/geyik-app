@@ -12,6 +12,11 @@
 	let fullname: string;
 	let avatarUrl =
 		'https://qmcmuhpqtxdqkpkohtfs.supabase.co/storage/v1/object/public/profiles/pps/monsters.png';
+	let timePassed: string;
+
+	const timeCalculator = () => {
+		timePassed = dateDistance(yorum.created_at);
+	};
 
 	const getUserName = async () => {
 		const { data: profil } = await supabase
@@ -38,6 +43,8 @@
 	onMount(async () => {
 		await checkAvatar();
 		await getUserName();
+		timeCalculator();
+		setInterval(timeCalculator, 1000 * 30);
 	});
 </script>
 
@@ -56,7 +63,7 @@
 		<div>
 			<p class="py-5 text-justify">{yorum.content}</p>
 			<!-- <p>{fullname}</p> -->
-			<p class="absolute right-0 top-0">({dateDistance(yorum.created_at)} önce)</p>
+			<p class="absolute right-0 top-0">({timePassed} önce)</p>
 		</div>
 	</div>
 {/if}
