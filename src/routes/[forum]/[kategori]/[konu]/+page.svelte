@@ -27,8 +27,8 @@
 			<h3 class="underline">Cevaplar</h3>
 			<div class="font-thin text-xl">{data.yorumlar?.length}</div>
 		</div>
-		{#each data.yorumlar || [] as yorum (yorum.id)}
-			<Mesaj {yorum} supabase={data.supabase} />
+		{#each data.yorumlar || [] as yorum, i (yorum.id)}
+			<Mesaj {yorum} supabase={data.supabase} hashtag={i + 1} />
 		{/each}
 	</div>
 

@@ -7,6 +7,7 @@
 
 	export let yorum: Database['public']['Tables']['yorumlar']['Row'];
 	export let supabase: SupabaseClient<Database>;
+	export let hashtag: number;
 
 	let nickname: string;
 	let fullname: string;
@@ -64,7 +65,10 @@
 					<div class="text-sm font-thin">@{nickname}</div>
 				</div>
 			</div>
-			<div class="text-sm">{timePassed} önce</div>
+			<div>
+				<div class="text-right font-thin">#{hashtag}</div>
+				<div class="text-sm">{timePassed} önce</div>
+			</div>
 		</div>
 		<div>
 			<p class="text-justify">{yorum.content}</p>
