@@ -90,36 +90,33 @@ export interface Database {
       profiles: {
         Row: {
           created_at: string
-          first_name: string | null
+          fullname: string | null
           id: number
           imza: string | null
-          last_name: string | null
           nickname: string
           token_count: number
-          token_visible: boolean | null
           user_id: string
+          visible: boolean | null
         }
         Insert: {
           created_at?: string
-          first_name?: string | null
+          fullname?: string | null
           id?: number
           imza?: string | null
-          last_name?: string | null
           nickname: string
           token_count?: number
-          token_visible?: boolean | null
           user_id: string
+          visible?: boolean | null
         }
         Update: {
           created_at?: string
-          first_name?: string | null
+          fullname?: string | null
           id?: number
           imza?: string | null
-          last_name?: string | null
           nickname?: string
           token_count?: number
-          token_visible?: boolean | null
           user_id?: string
+          visible?: boolean | null
         }
       }
       yorumlar: {

@@ -1,9 +1,44 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
+	import { Avatar, FileDropzone } from '@skeletonlabs/skeleton';
+
+	export let data;
 
 	let kvkk = false;
 	let kurallar = false;
 	let letsGo = false;
+
+	let files: FileList;
+	let avatarUrl =
+		'https://qmcmuhpqtxdqkpkohtfs.supabase.co/storage/v1/object/public/profiles/pps/monsters.png';
+
+	const checkAvatar = async () => {
+		const url =
+			'https://qmcmuhpqtxdqkpkohtfs.supabase.co/storage/v1/object/public/profiles/' +
+			data.session?.user.id +
+			'/avatar.jpg';
+		const res = await fetch(url);
+		if (res.ok) {
+			avatarUrl = url;
+		}
+	};
+
+	onMount(async () => {
+		await checkAvatar();
+	});
+
+	const onUploadAvatarHandler = async (e: Event): Promise<void> => {
+		const avatarFile = files[0];
+		// delete previous avatar
+		await data.supabase.storage.from('profiles').remove([data.session?.user.id + '/avatar.jpg']);
+		// upload new one
+		const { data: avatar, error } = await data.supabase.storage
+			.from('profiles')
+			.upload(data.session?.user.id + '/avatar.jpg', avatarFile);
+		// console.log(error);
+		await checkAvatar();
+	};
 
 	$: letsGo = kvkk && kurallar;
 </script>
@@ -11,13 +46,23 @@
 <h1>Geyik'e hoşgeldin</h1>
 <p>Size nasıl seslenelim?</p>
 
+<FileDropzone name="files" bind:files on:change={onUploadAvatarHandler}>
+	<svelte:fragment slot="lead">
+		<div class="flex justify-center items-center">
+			<Avatar src={avatarUrl} width="w-32" rounded="rounded-full" />
+		</div>
+	</svelte:fragment>
+	<svelte:fragment slot="message">Avatar yüklemek için tıkla veya sürükle</svelte:fragment>
+	<svelte:fragment slot="meta">~5 MB PNG, JPG veya GIF yükleyebilirsin.</svelte:fragment>
+</FileDropzone>
+
 <form action="?/profil" method="POST" class="w-full flex flex-col gap-2" use:enhance>
 	<label class="label">
 		<span>Kullanıcı adı <span class="font-thin text-xs">(zorunlu)</span></span>
 		<input class="input" type="text" name="nickname" placeholder="" required />
 	</label>
 	<label class="label">
-		<span>Tam adınız <span class="font-thin text-xs">(zorunlu)</span></span>
+		<span>Gerçek adınız <span class="font-thin text-xs">(zorunlu)</span></span>
 		<input class="input" type="text" name="isim" placeholder="" required />
 	</label>
 	<label class="label">
@@ -43,6 +88,7 @@
 		<input bind:checked={kurallar} class="checkbox" type="checkbox" required />
 		<span class="text-sm">Geyik kurallarını okudum ve sözleşmeyi onaylıyorum.</span>
 	</label>
+
 	<button type="submit" class="btn {letsGo ? 'variant-filled-success' : 'variant-filled-primary'}"
 		>Geyik yapmaya hazırım</button
 	>
