@@ -89,7 +89,7 @@ export interface Database {
 					imza: string | null;
 					nickname: string;
 					token_count: number;
-					user_id: string;
+					user_id: string | null;
 					visible: boolean | null;
 				};
 				Insert: {
@@ -99,7 +99,7 @@ export interface Database {
 					imza?: string | null;
 					nickname: string;
 					token_count?: number;
-					user_id: string;
+					user_id?: string | null;
 					visible?: boolean | null;
 				};
 				Update: {
@@ -109,7 +109,7 @@ export interface Database {
 					imza?: string | null;
 					nickname?: string;
 					token_count?: number;
-					user_id?: string;
+					user_id?: string | null;
 					visible?: boolean | null;
 				};
 			};

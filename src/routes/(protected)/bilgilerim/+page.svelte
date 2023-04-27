@@ -108,7 +108,7 @@
 	</label>
 	<label class="label">
 		<span>Profil durumu</span>
-		<select class="select" name="secret" value={'Herkese açık'} required>
+		<select class="select" name="visibility" value={'Herkese açık'} required>
 			<option value={'Herkese açık'}>Herkese açık</option>
 			<option value={'Gizli'}>Gizli</option>
 		</select>
@@ -118,11 +118,11 @@
 		<textarea class="input" name="imza" placeholder="" rows="3" />
 	</label>
 	<label class="label flex gap-2 items-center">
-		<input bind:checked={kvkk} class="checkbox" type="checkbox" required />
+		<input bind:checked={kvkk} class="checkbox" type="checkbox" name="kvkk" required />
 		<span class="text-sm">KVKK için izin veriyorum.</span>
 	</label>
 	<label class="label flex gap-2 items-center">
-		<input bind:checked={kurallar} class="checkbox" type="checkbox" required />
+		<input bind:checked={kurallar} class="checkbox" type="checkbox" name="rules" required />
 		<span class="text-sm">Geyik kurallarını okudum ve sözleşmeyi onaylıyorum.</span>
 	</label>
 
