@@ -23,6 +23,9 @@
 	let kurallar = false;
 	let letsGo = false;
 
+	let isUploadingAvatar = false;
+	let errorUploadingAvatar = false;
+
 	let files: FileList;
 	let avatarUrl =
 		'https://qmcmuhpqtxdqkpkohtfs.supabase.co/storage/v1/object/public/profiles/pps/monsters.png';
@@ -43,6 +46,8 @@
 	});
 
 	const onUploadAvatarHandler = async (e: Event): Promise<void> => {
+		isUploadingAvatar = true;
+		errorUploadingAvatar = false;
 		const avatarFile = files[0];
 		// delete previous avatar
 		await data.supabase.storage.from('profiles').remove([data.session?.user.id + '/avatar.jpg']);
@@ -50,7 +55,11 @@
 		const { data: avatar, error } = await data.supabase.storage
 			.from('profiles')
 			.upload(data.session?.user.id + '/avatar.jpg', avatarFile);
-		// console.log(error);
+		if (error) {
+			errorUploadingAvatar = true;
+			// console.log(error);
+		}
+		isUploadingAvatar = false;
 		await checkAvatar();
 	};
 
@@ -66,7 +75,14 @@
 			<Avatar src={avatarUrl} width="w-32" rounded="rounded-full" />
 		</div>
 	</svelte:fragment>
-	<svelte:fragment slot="message">Avatar yüklemek için tıkla veya sürükle</svelte:fragment>
+	<svelte:fragment slot="message"
+		><div>
+			{#if errorUploadingAvatar}
+				<p class="variant-filled-primary">Yanlış dosya</p>
+			{/if}
+			{isUploadingAvatar ? 'Yükleniyor...' : 'Avatar yüklemek için tıkla veya sürükle'}
+		</div></svelte:fragment
+	>
 	<svelte:fragment slot="meta">~5 MB PNG, JPG veya GIF yükleyebilirsin.</svelte:fragment>
 </FileDropzone>
 
